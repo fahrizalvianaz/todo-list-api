@@ -1,5 +1,6 @@
 package com.example.demo.repository;
 
+import com.example.demo.model.Checklist;
 import com.example.demo.model.Customers;
 import com.example.demo.model.ItemChecklist;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,8 +12,7 @@ import java.util.Optional;
 
 @Repository
 public interface ItemChecklistRepository extends JpaRepository<ItemChecklist, Long> {
-    List<ItemChecklist> findByCustomers(Customers customers);
-
-    Optional<ItemChecklist> findByIdItemChecklistAndCustomers(Long id, Customers customers);
+    List<ItemChecklist> findByCustomersAndChecklist(Customers customers, Checklist checklist);
+    ItemChecklist findByIdItemChecklistAndCustomersAndChecklist(Long id, Customers customers, Checklist checklist);
 
 }

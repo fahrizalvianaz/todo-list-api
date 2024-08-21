@@ -1,8 +1,7 @@
 package com.example.demo.service;
 
-import com.example.demo.dto.Checklist.ChecklistResponseDto;
-import com.example.demo.dto.Checklist.CreateChecklistReqDto;
-import lombok.extern.java.Log;
+import com.example.demo.dto.checklist.ChecklistResponseDto;
+import com.example.demo.dto.checklist.CreateChecklistReqDto;
 
 import java.util.List;
 

@@ -1,10 +1,7 @@
-package com.example.demo.dto.Checklist;
+package com.example.demo.dto.checklist;
 
-import com.example.demo.model.ItemChecklist;
 import lombok.Builder;
 import lombok.Data;
-
-import java.util.List;
 
 @Data
 @Builder

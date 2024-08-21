@@ -1,4 +1,4 @@
-package com.example.demo.dto.Checklist;
+package com.example.demo.dto.checklist;
 
 import lombok.Data;
 
