@@ -1,6 +1,7 @@
 package com.example.demo.mapper;
 
 import com.example.demo.dto.Checklist.ChecklistResponseDto;
+import com.example.demo.model.Checklist;
 import com.example.demo.model.ItemChecklist;
 import org.springframework.stereotype.Component;
 
@@ -11,18 +12,18 @@ import java.util.stream.Collectors;
 @Component
 public class ChecklistMapper {
 
-    public List<ChecklistResponseDto> toChecklistResponse(List<ItemChecklist> itemChecklists) {
+    public List<ChecklistResponseDto> toChecklistResponse(List<Checklist> itemChecklists) {
         return itemChecklists.stream()
                 .map(this::mapToChecklistResponseDto)
                 .collect(Collectors.toList());
     }
 
 
-    private ChecklistResponseDto mapToChecklistResponseDto(ItemChecklist itemChecklist) {
+    private ChecklistResponseDto mapToChecklistResponseDto(Checklist checklist) {
 
         return ChecklistResponseDto.builder()
-                .idItemChecklist(itemChecklist.getIdItemChecklist())
-                .name(itemChecklist.getName())
+                .idChecklist(checklist.getIdChecklist())
+                .name(checklist.getName())
                 .build();
     }
 }

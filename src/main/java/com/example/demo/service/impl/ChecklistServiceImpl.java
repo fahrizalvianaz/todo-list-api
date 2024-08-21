@@ -3,6 +3,7 @@ package com.example.demo.service.impl;
 import com.example.demo.dto.Checklist.ChecklistResponseDto;
 import com.example.demo.dto.Checklist.CreateChecklistReqDto;
 import com.example.demo.mapper.ChecklistMapper;
+import com.example.demo.model.Checklist;
 import com.example.demo.model.Customers;
 import com.example.demo.model.ItemChecklist;
 import com.example.demo.repository.ChecklistRepository;
@@ -30,19 +31,19 @@ public class ChecklistServiceImpl implements ChecklistService {
     public List<ChecklistResponseDto> getChecklist(Long userId) {
         Customers customers = customerRepository.findById(userId)
                 .orElseThrow(() ->new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
-        List<ItemChecklist> itemChecklist = checklistRepository.findByCustomers(customers);
+        List<Checklist> checklist = checklistRepository.findByCustomers(customers);
 
-        return checklistMapper.toChecklistResponse(itemChecklist);
+        return checklistMapper.toChecklistResponse(checklist);
     }
 
     @Override
     public String createChecklist(Long userId, CreateChecklistReqDto name) {
         Customers customers = customerRepository.findById(userId)
                 .orElseThrow(() ->new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
-        ItemChecklist itemChecklist = new ItemChecklist();
-        itemChecklist.setName(name.getName());
-        itemChecklist.setCustomers(customers);
-        checklistRepository.save(itemChecklist);
+        Checklist checklist = new Checklist();
+        checklist.setName(name.getName());
+        checklist.setCustomers(customers);
+        checklistRepository.save(checklist);
         return "Sukses menambahkan data";
     }
 
@@ -50,9 +51,9 @@ public class ChecklistServiceImpl implements ChecklistService {
     public String deleteChecklist(Long userId, Long idItemChecklist) {
         Customers customers = customerRepository.findById(userId)
                 .orElseThrow(() ->new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
-        ItemChecklist itemChecklist = checklistRepository.findByIdItemChecklistAndCustomers(idItemChecklist, customers)
+        Checklist checklist = checklistRepository.findByIdChecklistAndCustomers(idItemChecklist, customers)
                 .orElseThrow(() ->new ResponseStatusException(HttpStatus.NOT_FOUND, "Checklist not found"));
-        checklistRepository.delete(itemChecklist);
+        checklistRepository.delete(checklist);
         return "Suskses menghapus data";
     }
 }
