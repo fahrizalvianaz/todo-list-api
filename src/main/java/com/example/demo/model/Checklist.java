@@ -4,26 +4,26 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.util.List;
+
+
 @Entity
 @Data
-@Table(name = "itemChecklist", schema = "public")
+@Table(name = "checklist", schema = "public")
 @EqualsAndHashCode(callSuper = true)
-public class ItemChecklist extends BaseModel{
+public class Checklist extends BaseModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "item_checklist_id")
-    private Long idItemChecklist;
+    @Column(name = "checklist_id")
+    private Long idChecklist;
 
-    private String itemName;
+    private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id")
     private Customers customers;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "checklist_id")
-    private Checklist checklist;
-
-
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "checklist")
+    private List<ItemChecklist> itemChecklists;
 }

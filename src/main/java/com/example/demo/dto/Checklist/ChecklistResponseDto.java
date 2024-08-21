@@ -9,6 +9,6 @@ import java.util.List;
 @Data
 @Builder
 public class ChecklistResponseDto {
-    private Long idItemChecklist;
+    private Long idChecklist;
     private String name;
 }

@@ -26,4 +26,7 @@ public class Customers extends BaseModel{
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "customers")
     private List<ItemChecklist> itemChecklists;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "customers")
+    private List<Checklist> checklists;
+
 }
