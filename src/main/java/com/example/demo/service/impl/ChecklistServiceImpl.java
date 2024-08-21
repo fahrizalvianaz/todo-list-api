@@ -45,4 +45,14 @@ public class ChecklistServiceImpl implements ChecklistService {
         checklistRepository.save(itemChecklist);
         return "Sukses menambahkan data";
     }
+
+    @Override
+    public String deleteChecklist(Long userId, Long idItemChecklist) {
+        Customers customers = customerRepository.findById(userId)
+                .orElseThrow(() ->new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+        ItemChecklist itemChecklist = checklistRepository.findByIdItemChecklistAndCustomers(idItemChecklist, customers)
+                .orElseThrow(() ->new ResponseStatusException(HttpStatus.NOT_FOUND, "Checklist not found"));
+        checklistRepository.delete(itemChecklist);
+        return "Suskses menghapus data";
+    }
 }

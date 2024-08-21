@@ -42,4 +42,13 @@ public class ChecklistController {
         Long userId = jwtUtil.getId(jwt);
         return ResponseEntity.ok(BaseResponse.success(null, checklistService.createChecklist(userId, createChecklistReqDto)));
     }
+
+    @DeleteMapping(value = {"checklist/{idChecklist}"})
+    public ResponseEntity<?> deleteCheckList(
+            @RequestHeader(name = "Authorization") String token,
+            @PathVariable Long idChecklist){
+        String jwt = token.substring("Bearer ".length());
+        Long userId = jwtUtil.getId(jwt);
+        return ResponseEntity.ok(BaseResponse.success(null, checklistService.deleteChecklist(userId, idChecklist)));
+    }
 }
