@@ -51,4 +51,35 @@ public class ItemChecklistController {
         Long userId = jwtUtil.getId(jwt);
         return ResponseEntity.ok(BaseResponse.success(itemChecklistService.getItemChecklistById(userId, checklistId, checklistItemId), " sukses" ));
     }
+
+    @PutMapping(value = {"{checklistId}/item/{checklistItemId}"})
+    public ResponseEntity<?> updateItemCheckList(
+            @RequestHeader(name = "Authorization") String token,
+            @PathVariable Long checklistId,
+            @PathVariable Long checklistItemId){
+        String jwt = token.substring("Bearer ".length());
+        Long userId = jwtUtil.getId(jwt);
+        return ResponseEntity.ok(BaseResponse.success(itemChecklistService.updateItemChecklist(userId, checklistId, checklistItemId), " sukses update status" ));
+    }
+
+    @DeleteMapping(value = {"{checklistId}/item/{checklistItemId}"})
+    public ResponseEntity<?> deleteItemCheckList(
+            @RequestHeader(name = "Authorization") String token,
+            @PathVariable Long checklistId,
+            @PathVariable Long checklistItemId){
+        String jwt = token.substring("Bearer ".length());
+        Long userId = jwtUtil.getId(jwt);
+        return ResponseEntity.ok(BaseResponse.success(itemChecklistService.deleteItemChecklist(userId, checklistId, checklistItemId), " sukses hapus" ));
+    }
+
+    @PutMapping(value = {"{checklistId}/item/rename/{checklistItemId}"})
+    public ResponseEntity<?> renameItemCheckList(
+            @RequestHeader(name = "Authorization") String token,
+            @PathVariable Long checklistId,
+            @PathVariable Long checklistItemId,
+            @RequestBody CreateItemChecklistReqDto createItemChecklistReqDto){
+        String jwt = token.substring("Bearer ".length());
+        Long userId = jwtUtil.getId(jwt);
+        return ResponseEntity.ok(BaseResponse.success(itemChecklistService.renameItemChecklist(userId, checklistId, checklistItemId, createItemChecklistReqDto), " sukses update status" ));
+    }
 }

@@ -57,6 +57,7 @@ public class ItemChecklistServiceImpl implements ItemChecklistService {
         itemChecklist.setItemName(name.getItemName());
         itemChecklist.setCustomers(customers);
         itemChecklist.setChecklist(checklist);
+        itemChecklist.setStatus(false);
         itemChecklistRepository.save(itemChecklist);
         return "Sukses menambahkan data";
     }
@@ -69,5 +70,40 @@ public class ItemChecklistServiceImpl implements ItemChecklistService {
                 .orElseThrow(() ->new ResponseStatusException(HttpStatus.NOT_FOUND, "Checklist not found"));
         ItemChecklist itemChecklist = itemChecklistRepository.findByIdItemChecklistAndCustomersAndChecklist(idItemChecklist, customers, checklist);
         return checklistMapper.toChecklistResponseDto(itemChecklist);
+    }
+
+    @Override
+    public ItemChecklistResponseDto updateItemChecklist(Long userId, Long idChecklist, Long idItemChecklist) {
+        Customers customers = customerRepository.findById(userId)
+                .orElseThrow(() ->new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+        Checklist checklist = checklistRepository.findByIdChecklistAndCustomers(idChecklist, customers)
+                .orElseThrow(() ->new ResponseStatusException(HttpStatus.NOT_FOUND, "Checklist not found"));
+        ItemChecklist itemChecklist = itemChecklistRepository.findByIdItemChecklistAndCustomersAndChecklist(idItemChecklist, customers, checklist);
+        itemChecklist.setStatus(!itemChecklist.getStatus());
+        itemChecklistRepository.save(itemChecklist);
+        return checklistMapper.toChecklistResponseDto(itemChecklist);
+    }
+
+    @Override
+    public ItemChecklistResponseDto deleteItemChecklist(Long userId, Long idChecklist, Long idItemChecklist) {
+        Customers customers = customerRepository.findById(userId)
+                .orElseThrow(() ->new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+        Checklist checklist = checklistRepository.findByIdChecklistAndCustomers(idChecklist, customers)
+                .orElseThrow(() ->new ResponseStatusException(HttpStatus.NOT_FOUND, "Checklist not found"));
+        ItemChecklist itemChecklist = itemChecklistRepository.findByIdItemChecklistAndCustomersAndChecklist(idItemChecklist, customers, checklist);
+        itemChecklistRepository.delete(itemChecklist);
+        return checklistMapper.toChecklistResponseDto(itemChecklist);
+    }
+
+    @Override
+    public ItemChecklistResponseDto renameItemChecklist(Long userId, Long idChecklist, Long idItemChecklist, CreateItemChecklistReqDto name) {
+        Customers customers = customerRepository.findById(userId)
+                .orElseThrow(() ->new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+        Checklist checklist = checklistRepository.findByIdChecklistAndCustomers(idChecklist, customers)
+                .orElseThrow(() ->new ResponseStatusException(HttpStatus.NOT_FOUND, "Checklist not found"));
+        ItemChecklist itemChecklist = itemChecklistRepository.findByIdItemChecklistAndCustomersAndChecklist(idItemChecklist, customers, checklist);
+        itemChecklist.setItemName(name.getItemName());
+        ItemChecklist iteSaved = itemChecklistRepository.save(itemChecklist);
+        return checklistMapper.toChecklistResponseDto(iteSaved);
     }
 }
