@@ -25,6 +25,7 @@ public class ItemChecklistMapper {
         return ItemChecklistResponseDto.builder()
                 .idItemChecklist(checklist.getIdItemChecklist())
                 .itemName(checklist.getItemName())
+                .isCompleted(checklist.getStatus())
                 .build();
     }
 
