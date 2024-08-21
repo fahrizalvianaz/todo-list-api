@@ -13,4 +13,10 @@ public interface ItemChecklistService {
     String createItemChecklist(Long userId, Long idChecklist, CreateItemChecklistReqDto name);
 
     ItemChecklistResponseDto getItemChecklistById(Long userId, Long idChecklist, Long idItemChecklist);
+
+    ItemChecklistResponseDto updateItemChecklist(Long userId, Long idChecklist, Long idItemChecklist);
+
+    ItemChecklistResponseDto deleteItemChecklist(Long userId, Long idChecklist, Long idItemChecklist);
+
+    ItemChecklistResponseDto renameItemChecklist(Long userId, Long idChecklist, Long idItemChecklist, CreateItemChecklistReqDto name);
 }

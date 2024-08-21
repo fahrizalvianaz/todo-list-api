@@ -32,6 +32,7 @@ public class ItemChecklistMapper {
         return ItemChecklistResponseDto.builder()
                 .idItemChecklist(itemChecklist.getIdItemChecklist())
                 .itemName(itemChecklist.getItemName())
+                .isCompleted(itemChecklist.getStatus())
                 .build();
     }
 }

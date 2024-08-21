@@ -3,6 +3,7 @@ package com.example.demo.model;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.springframework.data.domain.PageImpl;
 
 @Entity
 @Data
@@ -16,6 +17,8 @@ public class ItemChecklist extends BaseModel{
     private Long idItemChecklist;
 
     private String itemName;
+
+    private Boolean status;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id")

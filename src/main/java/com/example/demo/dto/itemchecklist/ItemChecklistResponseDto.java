@@ -8,4 +8,5 @@ import lombok.Data;
 public class ItemChecklistResponseDto {
     private Long idItemChecklist;
     private String itemName;
+    private Boolean isCompleted;
 }
