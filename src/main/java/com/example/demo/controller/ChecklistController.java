@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 
+import com.example.demo.dto.Checklist.CreateChecklistReqDto;
 import com.example.demo.dto.base.BaseResponse;
 import com.example.demo.dto.register.RegisterRequestDto;
 import com.example.demo.repository.ChecklistRepository;
@@ -31,5 +32,14 @@ public class ChecklistController {
         String jwt = token.substring("Bearer ".length());
         Long userId = jwtUtil.getId(jwt);
         return ResponseEntity.ok(BaseResponse.success(checklistService.getChecklist(userId), "sukses"));
+    }
+
+    @PostMapping(value = {"checklist", "checklist/"})
+    public ResponseEntity<?> createCheckList(
+            @RequestHeader(name = "Authorization") String token,
+            @RequestBody CreateChecklistReqDto createChecklistReqDto){
+        String jwt = token.substring("Bearer ".length());
+        Long userId = jwtUtil.getId(jwt);
+        return ResponseEntity.ok(BaseResponse.success(null, checklistService.createChecklist(userId, createChecklistReqDto)));
     }
 }
