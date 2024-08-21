@@ -13,6 +13,6 @@ import java.util.Optional;
 public interface ChecklistRepository extends JpaRepository<ItemChecklist, Long> {
     List<ItemChecklist> findByCustomers(Customers customers);
 
-
+    Optional<ItemChecklist> findByIdItemChecklistAndCustomers(Long id, Customers customers);
 
 }
