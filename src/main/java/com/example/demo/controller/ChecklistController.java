@@ -1,15 +1,12 @@
 package com.example.demo.controller;
 
 
-import com.example.demo.dto.Checklist.CreateChecklistReqDto;
+import com.example.demo.dto.checklist.CreateChecklistReqDto;
 import com.example.demo.dto.base.BaseResponse;
-import com.example.demo.dto.register.RegisterRequestDto;
-import com.example.demo.repository.ChecklistRepository;
 import com.example.demo.service.ChecklistService;
 import com.example.demo.service.CustomerService;
 import com.example.demo.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

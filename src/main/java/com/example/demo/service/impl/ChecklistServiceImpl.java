@@ -1,11 +1,10 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.dto.Checklist.ChecklistResponseDto;
-import com.example.demo.dto.Checklist.CreateChecklistReqDto;
+import com.example.demo.dto.checklist.ChecklistResponseDto;
+import com.example.demo.dto.checklist.CreateChecklistReqDto;
 import com.example.demo.mapper.ChecklistMapper;
 import com.example.demo.model.Checklist;
 import com.example.demo.model.Customers;
-import com.example.demo.model.ItemChecklist;
 import com.example.demo.repository.ChecklistRepository;
 import com.example.demo.repository.CustomerRepository;
 import com.example.demo.service.ChecklistService;

@@ -1,8 +1,7 @@
 package com.example.demo.mapper;
 
-import com.example.demo.dto.Checklist.ChecklistResponseDto;
+import com.example.demo.dto.checklist.ChecklistResponseDto;
 import com.example.demo.model.Checklist;
-import com.example.demo.model.ItemChecklist;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
