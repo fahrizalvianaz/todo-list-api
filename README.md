@@ -1,6 +1,47 @@
-### Todo List API
+## Todo List API
 
-This API enables users to manage checklists and items within those checklists. The endpoints are secured using JWT (JSON Web Token) for authentication. Below is a detailed overview of the available endpoints:
+This API enables users to manage checklists and items within those checklists like Google Keeps. The endpoints are secured using JWT (JSON Web Token) for authentication. Below is a detailed overview of the available endpoints:
+
+### Authentication API
+
+#### Endpoints:
+
+1. **Register User**
+   - **Endpoint:** `POST /register` or `POST /register/`
+   - **Description:** Registers a new user with the provided details.
+   - **Request Body:** `RegisterRequestDto` containing the user’s registration details.
+   - **Response:** Returns a success message along with the registration details.
+
+2. **Login User**
+   - **Endpoint:** `POST /login` or `POST /login/`
+   - **Description:** Authenticates a user and provides a JWT token if the credentials are correct.
+   - **Request Body:** `LoginRequestDto` containing the user’s login credentials.
+   - **Response:** Returns the JWT token along with a success message.
+
+### Checklist API
+
+#### Endpoints:
+
+1. **Get All Checklists**
+   - **Endpoint:** `GET /checklist` or `GET /checklist/`
+   - **Description:** Retrieves all checklists associated with the authenticated user.
+   - **Authorization:** Requires a valid JWT token in the `Authorization` header.
+   - **Response:** Returns a list of checklists along with a success message.
+
+2. **Create a Checklist**
+   - **Endpoint:** `POST /checklist` or `POST /checklist/`
+   - **Description:** Creates a new checklist for the authenticated user.
+   - **Authorization:** Requires a valid JWT token in the `Authorization` header.
+   - **Request Body:** `CreateChecklistReqDto` containing the checklist details.
+   - **Response:** Returns a success message indicating that the checklist was created.
+
+3. **Delete a Checklist**
+   - **Endpoint:** `DELETE /checklist/{idChecklist}`
+   - **Description:** Deletes a specified checklist associated with the authenticated user.
+   - **Authorization:** Requires a valid JWT token in the `Authorization` header.
+   - **Response:** Returns a success message indicating that the checklist was deleted.
+
+### Item Checklist API
 
 #### Endpoints:
 
@@ -41,8 +82,5 @@ This API enables users to manage checklists and items within those checklists. T
    - **Authorization:** Requires a valid JWT token in the `Authorization` header.
    - **Request Body:** `CreateItemChecklistReqDto` containing the new name of the item.
    - **Response:** Returns the renamed item along with a success message.
-
-#### Authentication:
-All endpoints require a valid JWT token. The token must be included in the `Authorization` header as follows: `Authorization: Bearer <token>`.
 
 ---
